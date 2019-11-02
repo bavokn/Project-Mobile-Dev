@@ -6,6 +6,8 @@ import kotlinx.coroutines.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +17,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val view : TextView =  findViewById(R.id.test)
-        boardGameGeek.fetchJsonResponse("game",view)
+        val button  = findViewById(R.id.buttonSearch) as Button
+        val text = findViewById(R.id.txtSearchBoardGameName) as EditText
+        val view : TextView =  findViewById(R.id.txtLabelTotalBoardGames)
+
+        button.setOnClickListener{
+            boardGameGeek.fetchJsonResponse(text.text.toString(),view)
+        }
     }
 }
