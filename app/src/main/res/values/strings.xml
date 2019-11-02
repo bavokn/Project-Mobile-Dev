@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">New App</string>
+    <string name="app_name">Board Game Geeks</string>
+    <string name="test_version">test version</string>
+    <string name="button_search">SEARCH</string>
+    <string name="bg_description">Description</string>
+    <string name="bg_min_age">Minimum Age</string>
+    <string name="bg_max_players">Maximum Players</string>
+    <string name="bg_min_players">Minimum Players</string>
+    <string name="bg_year">Year</string>
+    <string name="bg_name">Name</string>
+    <string name="bg_publisher">Publisher</string>
+    <string name="bg_creators">Creators</string>
+    <string name="bg_rating">Rating</string>
+    <string name="bg_url">Url</string>
 </resources>
