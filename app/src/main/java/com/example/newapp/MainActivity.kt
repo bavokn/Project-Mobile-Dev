@@ -6,6 +6,7 @@ import kotlinx.coroutines.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
     companion object{
@@ -14,19 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        GlobalScope.launch{
-            search()
-        }
-        Log.d("first thread", "started")
+        val view : TextView =  findViewById(R.id.test)
+        boardGameGeek.fetchJsonResponse("game",view)
     }
-
-    fun search()
-    {
-        Log.d("search","succes")
-        val games = boardGameGeek.searchGames("boardgame")
-        Log.d("succes", games.toString())
-    }
-
-
-
 }
