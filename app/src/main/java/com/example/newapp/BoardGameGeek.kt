@@ -73,7 +73,7 @@ class BoardGameGeek() {
         // Add the request to the RequestQueue.
         requestQueue.add(stringRequest)
         requestQueue.start()
-        //Log.d("list", boardGames.games.toString())
+        //TODO make this a callback on main thread
         return boardGames
     }
 }
