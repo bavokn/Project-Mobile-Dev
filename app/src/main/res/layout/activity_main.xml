@@ -7,24 +7,27 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerArtists"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView"
+        android:layout_width="411dp"
+        android:layout_height="455dp"
         android:scrollbars="vertical"
-        app:layout_constraintTop_toBottomOf="@+id/txtSearchBoardGameName"></androidx.recyclerview.widget.RecyclerView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtSearchBoardGameName" />
 
     <EditText
         android:id="@+id/txtSearchBoardGameName"
         android:layout_width="137dp"
         android:layout_height="43dp"
+        android:layout_marginTop="64dp"
         android:text="Game"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/buttonSearch"
-        android:layout_width="161dp"
-        android:layout_height="47dp"
+        android:layout_width="158dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
         android:text="@string/button_search"
         app:layout_constraintStart_toEndOf="@+id/txtSearchBoardGameName"
         app:layout_constraintTop_toTopOf="parent" />
@@ -32,10 +35,9 @@
     <TextView
         android:id="@+id/txtLabelTotalBoardGames"
         style="@android:style/Widget.EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
+        android:layout_width="65dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="64dp"
         android:text="Total: "
         app:layout_constraintStart_toEndOf="@+id/buttonSearch"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,8 +45,9 @@
     <TextView
         android:id="@+id/txtTotalBoardGames"
         style="@android:style/Widget.EditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="51dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="64dp"
         android:text="0"
         app:layout_constraintStart_toEndOf="@+id/txtLabelTotalBoardGames"
         app:layout_constraintTop_toTopOf="parent" />
@@ -61,16 +64,30 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.977" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="411dp"
+        android:layout_height="65dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/top10Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="56dp"
-        android:layout_marginRight="56dp"
-        android:layout_marginBottom="68dp"
-        android:clickable="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_dialog_dialer" />
+        android:text="Top 10"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="8dp" />
+
+    <Button
+        android:id="@+id/infoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Info"
+        tools:layout_editor_absoluteX="316dp"
+        tools:layout_editor_absoluteY="8dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
