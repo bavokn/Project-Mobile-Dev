@@ -1,6 +1,5 @@
 package com.example.newapp
 
-import BoardGame
 import BoardGameGeek
 import BoardGames
 import android.content.Intent
@@ -10,7 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import android.util.Log
 import android.widget.TextView
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,33 +26,35 @@ class MainActivity : AppCompatActivity() {
         val top10Button = findViewById<Button>(R.id.top10Button)
         val searchText = findViewById<EditText>(R.id.txtSearchBoardGameName)
         val totalGamesView : TextView =  findViewById(R.id.txtLabelTotalBoardGames)
+        val totalView : TextView = findViewById(R.id.txtTotalBoardGames)
 
         searchButton.setOnClickListener{
-            // boardGameGeek.fetchJsonResponse(searchText.text.toString(), totalGamesView)
+            boardGameGeek.fetchJsonResponse(searchText.text.toString())
+
+            Log.e("CHECK: ", "BEFORE IF CHECK")
+
+            if (boardGameGeek.boardGames?.games !== null) {
+                Log.e("CHECK2: ", "AFTER IF CHECK")
+                val boardGames = boardGameGeek.boardGames
+                if (boardGames != null) {
+                    totalView.text = boardGames.games?.size.toString()
+                }
+                Log.d("games", boardGames.toString())
+                val layoutManager = LinearLayoutManager(this)
+                layoutManager.orientation = LinearLayoutManager.VERTICAL
+                recyclerView.layoutManager = layoutManager
+
+                val adapter = boardGames?.let { BoardGameAdapter(this, it) }
+                recyclerView.adapter = adapter
+            }
         }
 
         infoButton.setOnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             this.startActivity(intent)
         }
-        val totalView : TextView = findViewById(R.id.txtTotalBoardGames)
 
         val liveData = MutableLiveData<BoardGames>()
-
-        boardGameGeek.fetchJsonResponse("game")
-
-        if (boardGameGeek.boardGames.games !== null){
-            val boardGames = boardGameGeek.boardGames
-            totalView.text = boardGames.games?.size.toString()
-            Log.d("games", boardGames.toString())
-            val layoutManager = LinearLayoutManager(this)
-            layoutManager.orientation = LinearLayoutManager.VERTICAL
-            recyclerView.layoutManager = layoutManager
-
-            val adapter = BoardGameAdapter(this, boardGames)
-            recyclerView.adapter = adapter
-        }
-
 
         //val bg1 = BoardGame("654152", "test1.com", "test1", 1997,
         //            4, 8, 3, "test game about testing test test test",
@@ -79,12 +79,12 @@ class MainActivity : AppCompatActivity() {
         //            "worst company", arrayOf("No one", "Will"), 2.1, "test5url.com")
 
         // val boardGameList = listOf(bg1, bg2, bg3, bg4, bg5)
-        //        val boardGames = BoardGames(boardGameList)
+        //        val boardGameList = BoardGames(boardGameList)
         //        val layoutManager = LinearLayoutManager(this)
         //        layoutManager.orientation = LinearLayoutManager.VERTICAL
         //        recyclerView.layoutManager = layoutManager
         //
-        //        val adapter = BoardGameAdapter(this, boardGames)
+        //        val adapter = BoardGameAdapter(this, boardGameList)
         //        recyclerView.adapter = adapter
 
     }

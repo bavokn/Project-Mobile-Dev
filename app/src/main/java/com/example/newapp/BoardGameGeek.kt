@@ -1,8 +1,6 @@
 import android.os.Parcel
 import Interfaces.BoardGameInterface
-import android.content.Context
 import android.os.Parcelable
-import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import com.fasterxml.jackson.module.kotlin.*
 import com.android.volley.Request
@@ -10,7 +8,6 @@ import com.android.volley.Response
 import org.json.JSONObject
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
-import com.example.newapp.BoardGameAdapter
 import java.io.File
 import org.json.JSONArray
 
@@ -81,8 +78,11 @@ data class BoardGame(
 
 data class BoardGames(var games: List<BoardGame>?)
 
-class BoardGameGeek(): BoardGameInterface {
-    public var boardGames =  BoardGames(null)
+class BoardGameGeek : BoardGameInterface {
+    // val boardGames =  mutableBoardGames(ListOf())
+    val boardGameList = mutableListOf<BoardGame>()
+    var boardGames : BoardGames? = null
+
     companion object {
         val mapper = jacksonObjectMapper()
 
@@ -103,13 +103,13 @@ class BoardGameGeek(): BoardGameInterface {
     override fun onCallback(items: JSONArray) {
         for (i in 0 until items.length()){
             val item = items[i] as JSONObject
+            Log.e("item:", item.toString())
             val creators =  item.getJSONArray("designers")
 
             val list = Array(creators.length()) {
                 creators.optString(it)
             }
-            boardGames.games?.plus(BoardGame(
-                item.optString("id"),
+            val currentBoardGame = BoardGame( item.optString("id"),
                 item.optString("image_url"),
                 item.optString("name"),
                 item.optInt("year_published"),
@@ -120,9 +120,12 @@ class BoardGameGeek(): BoardGameInterface {
                 item.optString("primary_publisher"),
                 list,
                 item.optDouble("average_user_rating"),
-                item.optString("rules_url")
-            ))
+                item.optString("rules_url"))
+            boardGameList += currentBoardGame
+            Log.e("game:", boardGameList[i].name.toString())
         }
+
+        boardGames = BoardGames(boardGameList)
     }
 
     fun fetchJsonResponse(query: String)  {
