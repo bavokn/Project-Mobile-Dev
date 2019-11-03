@@ -1,4 +1,5 @@
-import android.content.Context
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.widget.TextView
 import com.fasterxml.jackson.module.kotlin.*
@@ -11,8 +12,71 @@ import java.io.File
 import android.text.method.ScrollingMovementMethod
 import org.json.JSONArray
 
-data class BoardGame(val id: String,val image_url : String? ,val name: String?, val yearpublished: Int?, val min_players : Int?,
-                     val max_players : Int?, val min_age : Int?, val desc : String?, val company : String?, val creators : Array<String?>, val rating : Double?, val url : String?)
+data class BoardGame(
+    val id: String?, val image_url: String?, val name: String?,
+    val year_published: Int?, val min_players: Int?, val max_players: Int?,
+    val min_age: Int?, val desc: String?, val company: String?,
+    val creators: Array<String?>, val rating: Double?, val url: String?) : Parcelable {
+    constructor(parcel: Parcel) : this(
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readString(),
+        parcel.createStringArray() as Array<String?>,
+        parcel.readValue(Double::class.java.classLoader) as? Double,
+        parcel.readString()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id)
+        parcel.writeString(image_url)
+        parcel.writeString(name)
+        parcel.writeValue(year_published)
+        parcel.writeValue(min_players)
+        parcel.writeValue(max_players)
+        parcel.writeValue(min_age)
+        parcel.writeString(desc)
+        parcel.writeString(company)
+        parcel.writeStringArray(creators)
+        parcel.writeValue(rating)
+        parcel.writeString(url)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as BoardGame
+
+        if (!creators.contentEquals(other.creators)) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return creators.contentHashCode()
+    }
+
+    companion object CREATOR : Parcelable.Creator<BoardGame> {
+        override fun createFromParcel(parcel: Parcel): BoardGame {
+            return BoardGame(parcel)
+        }
+
+        override fun newArray(size: Int): Array<BoardGame?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
+
 data class BoardGames(var games: List<BoardGame>?)
 
 class BoardGameGeek() {
@@ -67,6 +131,7 @@ class BoardGameGeek() {
                         ))
 
                 }
+                view.setMovementMethod(ScrollingMovementMethod())
             },
             Response.ErrorListener { Log.d("error", "That didn't work!") })
 

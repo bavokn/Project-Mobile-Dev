@@ -4,10 +4,16 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/tv_creator_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="TextView"
-        android:textSize="24sp" />
+        android:text="@string/bg_creator"
+        android:textSize="30sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_creator_games"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

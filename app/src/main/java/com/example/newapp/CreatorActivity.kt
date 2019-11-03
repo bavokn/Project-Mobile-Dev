@@ -1,42 +1,32 @@
 package com.example.newapp
 
 import BoardGame
-import BoardGameGeek
 import BoardGames
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.android.synthetic.main.activity_creator_games.*
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
-    companion object{
-        private val boardGameGeek = BoardGameGeek()
-    }
+class CreatorActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_creator_games)
 
-        val searchButton  = findViewById<Button>(R.id.buttonSearch)
-        val infoButton = findViewById<Button>(R.id.infoButton)
-        val top10Button = findViewById<Button>(R.id.top10Button)
-        val searchText = findViewById<EditText>(R.id.txtSearchBoardGameName)
-        val totalGamesView : TextView =  findViewById(R.id.txtLabelTotalBoardGames)
+        setUp()
+    }
 
-        searchButton.setOnClickListener{
-            boardGameGeek.fetchJsonResponse(searchText.text.toString(), totalGamesView)
-        }
+    private fun setUp() {
+        val creator = intent.getStringExtra("Creator")
 
-        infoButton.setOnClickListener {
-            val intent = Intent(this, InfoActivity::class.java)
-            this.startActivity(intent)
-        }
-        val totalView : TextView = findViewById(R.id.txtTotalBoardGames)
+        tv_creator_name.text = creator
 
-        boardGameGeek.fetchJsonResponse("game", totalGamesView)
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        rv_creator_games.layoutManager = layoutManager
 
         val bg1 = BoardGame("654152", "test1.com", "test1", 1997,
             4, 8, 3, "test game about testing test test test",
@@ -61,14 +51,21 @@ class MainActivity : AppCompatActivity() {
             "worst company", arrayOf("No one", "Will"), 2.1, "test5url.com")
 
         val boardGameList = listOf(bg1, bg2, bg3, bg4, bg5)
-        val boardGames = BoardGames(boardGameList)
-        val layoutManager = LinearLayoutManager(this)
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        recyclerView.layoutManager = layoutManager
+        val selectedGames = mutableListOf<BoardGame>()
+        boardGameList.forEach {
+            if (it.creators.contains(creator)) {
+                selectedGames += it
+            }
+        }
+        val boardGames = BoardGames(selectedGames)
 
         val adapter = BoardGameAdapter(this, boardGames)
-        recyclerView.adapter = adapter
+        rv_creator_games.adapter = adapter
 
-        totalView.text = boardGames.games?.size.toString()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, MainActivity::class.java)
+        this.startActivity(intent)
     }
 }

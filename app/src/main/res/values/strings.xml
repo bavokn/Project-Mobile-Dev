@@ -12,4 +12,8 @@
     <string name="bg_creators">Creators</string>
     <string name="bg_rating">Rating</string>
     <string name="bg_url">Url</string>
+    <string name="boardgame_image_description">Boardgame image</string>
+    <string name="bg_creator">Creator</string>
+    <string name="api_link">https://www.boardgameatlas.com</string>
+    <string name="authors">Bavo Knaeps\nJitse Wierdsma</string>
 </resources>

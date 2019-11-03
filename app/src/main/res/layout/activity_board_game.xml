@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_bg_screen"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:scrollbars="vertical"
+    android:verticalScrollbarPosition="defaultPosition">
 
     <TextView
         android:id="@+id/tv_bg_name"
         android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="@string/bg_name"
+        android:textAllCaps="false"
         android:textSize="30sp" />
 
     <TextView
         android:id="@+id/tv_bg_year"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bg_year" />
+        android:gravity="end"
+        android:text="@string/bg_year"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tv_bg_rating"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/bg_rating"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tv_bg_min_players"
@@ -39,30 +52,38 @@
     <TextView
         android:id="@+id/tv_bg_description"
         android:layout_width="match_parent"
-        android:layout_height="226dp"
+        android:layout_height="115dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical"
         android:text="@string/bg_description" />
 
-    <TextView
-        android:id="@+id/tv_bg_publisher"
+    <Button
+        android:id="@+id/btn_bg_publisher"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bg_publisher" />
 
-    <TextView
-        android:id="@+id/tv_bg_creators"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_bg_creators"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bg_creators" />
-
-    <TextView
-        android:id="@+id/tv_bg_rating"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/bg_rating" />
+        android:layout_height="96dp"
+        android:fadeScrollbars="false"
+        android:scrollbars="vertical" />
 
     <TextView
         android:id="@+id/tv_bg_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/bg_url" />
+        android:gravity="end"
+        android:text="@string/bg_url"
+        android:autoLink="web"/>
+
+    <ImageView
+        android:id="@+id/iv_bg_img_url"
+        android:layout_width="match_parent"
+        android:layout_height="161dp"
+        android:contentDescription="@string/boardgame_image_description" />
+
 </LinearLayout>
