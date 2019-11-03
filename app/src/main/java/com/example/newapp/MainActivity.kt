@@ -6,6 +6,7 @@ import BoardGames
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -21,17 +22,13 @@ class MainActivity : AppCompatActivity() {
 
         boardGameGeek.fetchJsonResponse("game")
 
-//
-//
-//        val boardGameList = listOf(bg1, bg2, bg3, bg4, bg5)
-//        val boardGames = BoardGames(boardGameList)
-//        val layoutManager = LinearLayoutManager(this)
-//        layoutManager.orientation = LinearLayoutManager.VERTICAL
-//        recyclerView.layoutManager = layoutManager
-//
-//        val adapter = BoardGameAdapter(this, boardGames)
-//        recyclerView.adapter = adapter
-//
-//        totalView.text = boardGames.games?.size.toString()
+        val boardGames = boardGameGeek.boardGames
+        val layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        recyclerView.layoutManager = layoutManager
+
+        val adapter = BoardGameAdapter(this, boardGames)
+        recyclerView.adapter = adapter
+
     }
 }

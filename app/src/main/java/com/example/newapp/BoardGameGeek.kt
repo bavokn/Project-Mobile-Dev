@@ -69,9 +69,8 @@ data class BoardGame(
 data class BoardGames(var games: List<BoardGame>?)
 
 class BoardGameGeek(): BoardGameInterface {
+    public var boardGames =  BoardGames(null)
     companion object {
-        private var boardGames =  BoardGames(null)
-
         val mapper = jacksonObjectMapper()
 
         private val BASE_URL = "https://www.boardgameatlas.com/api/"
@@ -88,7 +87,7 @@ class BoardGameGeek(): BoardGameInterface {
     }
 
     @Override
-    override fun onCallback(items: JSONArray){
+    override fun onCallback(items: JSONArray) {
         for (i in 0 until items.length()){
             val item = items[i] as JSONObject
             val creators =  item.getJSONArray("designers")
@@ -111,8 +110,6 @@ class BoardGameGeek(): BoardGameInterface {
                 item.optString("rules_url")
             ))
         }
-        //TODO pass the boardgames to the adapter
-        Log.d("games" , boardGames.games.toString())
     }
 
     fun fetchJsonResponse(query: String)  {
@@ -122,7 +119,7 @@ class BoardGameGeek(): BoardGameInterface {
             Response.Listener<String> { response ->
                 val items : JSONArray = JSONObject(response).get("games") as JSONArray
                 //add all the games here to the list of boardgames and return this object
-                return@Listener onCallback(items)
+                onCallback(items)
             },
             Response.ErrorListener { Log.d("error", "That didn't work!") })
 
