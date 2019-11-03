@@ -14,7 +14,6 @@ class BoardGameActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_game)
 
-
         setUp()
     }
 
