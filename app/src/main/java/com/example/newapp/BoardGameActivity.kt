@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import android.text.method.ScrollingMovementMethod
 import android.widget.LinearLayout
 
+import java.util.Observer
 
 class BoardGameActivity : AppCompatActivity() {
 

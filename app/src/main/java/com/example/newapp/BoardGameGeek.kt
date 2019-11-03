@@ -1,15 +1,17 @@
 import android.os.Parcel
+import Interfaces.BoardGameInterface
+import android.content.Context
 import android.os.Parcelable
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
-import android.widget.TextView
 import com.fasterxml.jackson.module.kotlin.*
 import com.android.volley.Request
 import com.android.volley.Response
 import org.json.JSONObject
 import com.android.volley.RequestQueue
 import com.android.volley.toolbox.*
+import com.example.newapp.BoardGameAdapter
 import java.io.File
-import android.text.method.ScrollingMovementMethod
 import org.json.JSONArray
 
 data class BoardGame(
@@ -79,16 +81,15 @@ data class BoardGame(
 
 data class BoardGames(var games: List<BoardGame>?)
 
-class BoardGameGeek() {
+class BoardGameGeek(): BoardGameInterface {
+    public var boardGames =  BoardGames(null)
     companion object {
-        private var boardGames =  BoardGames(null)
-
         val mapper = jacksonObjectMapper()
 
         private val BASE_URL = "https://www.boardgameatlas.com/api/"
         private val client_id =  "Pe4QHoDYpF"
         // Instantiate the cache
-        val cacheDir = File("")
+        val cacheDir = File("/local")
         val cache = DiskBasedCache(cacheDir, 1024 * 1024) // 1MB cap
 
         // Set up the network to use HttpURLConnection as the HTTP client.
@@ -98,47 +99,45 @@ class BoardGameGeek() {
         val requestQueue = RequestQueue(cache, network)
     }
 
-    fun fetchJsonResponse(query: String, view : TextView) : BoardGames  {
+    @Override
+    override fun onCallback(items: JSONArray) {
+        for (i in 0 until items.length()){
+            val item = items[i] as JSONObject
+            val creators =  item.getJSONArray("designers")
+
+            val list = Array(creators.length()) {
+                creators.optString(it)
+            }
+            boardGames.games?.plus(BoardGame(
+                item.optString("id"),
+                item.optString("image_url"),
+                item.optString("name"),
+                item.optInt("year_published"),
+                item.optInt("min_players"),
+                item.optInt("max_players"),
+                item.optInt("min_age"),
+                item.optString("description"),
+                item.optString("primary_publisher"),
+                list,
+                item.optDouble("average_user_rating"),
+                item.optString("rules_url")
+            ))
+        }
+    }
+
+    fun fetchJsonResponse(query: String)  {
         val url = String.format(BASE_URL + "search?name=" + query + "&client_id=" + client_id)
 
-        // Request a string response from the provided URL.
-        var jsonObject = JSONObject()
         val stringRequest = StringRequest(Request.Method.GET, url,
             Response.Listener<String> { response ->
                 val items : JSONArray = JSONObject(response).get("games") as JSONArray
                 //add all the games here to the list of boardgames and return this object
-
-                for (i in 0 until items.length()){
-                   val item = items[i] as JSONObject
-                    val creators =  item.getJSONArray("designers")
-
-                    val list = Array(creators.length()) {
-                        creators.optString(it)
-                    }
-                    boardGames.games?.plus(BoardGame(
-                        item.optString("id"),
-                        item.optString("image_url"),
-                        item.optString("name"),
-                        item.optInt("year_published"),
-                        item.optInt("min_players"),
-                        item.optInt("max_players"),
-                        item.optInt("min_age"),
-                        item.optString("description"),
-                        item.optString("primary_publisher"),
-                        list,
-                        item.optDouble("average_user_rating"),
-                        item.optString("rules_url")
-                        ))
-
-                }
-                view.setMovementMethod(ScrollingMovementMethod())
+                onCallback(items)
             },
             Response.ErrorListener { Log.d("error", "That didn't work!") })
 
         // Add the request to the RequestQueue.
         requestQueue.add(stringRequest)
         requestQueue.start()
-        //TODO make this a callback on main thread
-        return boardGames
     }
 }
