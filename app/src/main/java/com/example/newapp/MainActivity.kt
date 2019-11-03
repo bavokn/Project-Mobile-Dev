@@ -20,9 +20,9 @@ class MainActivity : AppCompatActivity() {
         val button  = findViewById(R.id.buttonSearch) as Button
         val text = findViewById(R.id.txtSearchBoardGameName) as EditText
         val view : TextView =  findViewById(R.id.txtLabelTotalBoardGames)
-
         button.setOnClickListener{
-            boardGameGeek.fetchJsonResponse(text.text.toString(),view)
+            Log.d("sending request", "------------")
+            boardGameGeek.fetchJsonResponse(text.text.toString())
         }
     }
 }
