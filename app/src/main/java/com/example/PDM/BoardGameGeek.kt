@@ -89,7 +89,7 @@ class BoardGameGeek : BoardGameInterface {
         private val BASE_URL = "https://www.boardgameatlas.com/api/"
         private val client_id =  "Pe4QHoDYpF"
         // Instantiate the cache
-        val cacheDir = File("/local")
+        val cacheDir = File("/localStorage")
         val cache = DiskBasedCache(cacheDir, 1024 * 1024) // 1MB cap
 
         // Set up the network to use HttpURLConnection as the HTTP client.
@@ -100,15 +100,24 @@ class BoardGameGeek : BoardGameInterface {
     }
 
     @Override
-    override fun onCallback(items: JSONArray) {
+    override fun onCallback(items: JSONArray) : BoardGames{
         for (i in 0 until items.length()){
             val item = items[i] as JSONObject
             Log.e("item:", item.toString())
-            val creators =  item.getJSONArray("designers")
+            val designers =  item.getJSONArray("designers")
+            val developers = item.getJSONArray("developers")
+            val artists = item.getJSONArray("artists")
 
-            val list = Array(creators.length()) {
-                creators.optString(it)
+            var creators = Array(designers.length()) {
+                designers.optString(it)
             }
+             creators += Array(developers.length()) {
+                developers.optString(it)
+            }
+            creators += Array(artists.length()) {
+                artists.optString(it)
+            }
+
             val currentBoardGame = BoardGame( item.optString("id"),
                 item.optString("image_url"),
                 item.optString("name"),
@@ -118,14 +127,15 @@ class BoardGameGeek : BoardGameInterface {
                 item.optInt("min_age"),
                 item.optString("description"),
                 item.optString("primary_publisher"),
-                list,
+                creators,
                 item.optDouble("average_user_rating"),
                 item.optString("rules_url"))
             boardGameList += currentBoardGame
-            Log.e("game:", boardGameList[i].name.toString())
         }
 
         boardGames = BoardGames(boardGameList)
+
+        return boardGames as BoardGames
     }
 
     fun fetchJsonResponse(query: String)  {
@@ -143,4 +153,6 @@ class BoardGameGeek : BoardGameInterface {
         requestQueue.add(stringRequest)
         requestQueue.start()
     }
+
+
 }

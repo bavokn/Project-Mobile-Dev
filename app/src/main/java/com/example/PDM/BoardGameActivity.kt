@@ -1,28 +1,39 @@
-package com.example.newapp
+package com.example.PDM
 
 import BoardGame
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_main.*
 import android.text.method.ScrollingMovementMethod
-import android.widget.LinearLayout
-
-import java.util.Observer
+import androidx.lifecycle.ViewModelProviders
+import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
 
 class BoardGameActivity : AppCompatActivity() {
+
+    val adapter : BoardGameAdapter by lazy {
+        BoardGameAdapter(model)
+    }
+    val model : BoardGamesViewModel by lazy {
+        ViewModelProviders.of(this)[BoardGamesViewModel::class.java]
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_board_game)
+
+        /**
+         * Setup recyclerArtists with ArtistsAdapter
+         */
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         setUp()
     }

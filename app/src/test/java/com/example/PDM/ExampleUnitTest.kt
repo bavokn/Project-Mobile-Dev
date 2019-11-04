@@ -1,4 +1,4 @@
-package com.example.newapp
+package com.example.PDM
 
 import org.junit.Test
 
