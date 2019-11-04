@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     companion object{
-        private val boardGameGeek = BoardGameGeek()
+        val boardGameGeek = BoardGameGeek()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,12 +29,9 @@ class MainActivity : AppCompatActivity() {
         val totalView : TextView = findViewById(R.id.txtTotalBoardGames)
 
         searchButton.setOnClickListener{
-            boardGameGeek.fetchJsonResponse(searchText.text.toString())
-
-            Log.e("CHECK: ", "BEFORE IF CHECK")
+            boardGameGeek.fetchJsonResponse(searchText.text.toString(), "games")
 
             if (boardGameGeek.boardGames?.games !== null) {
-                Log.e("CHECK2: ", "AFTER IF CHECK")
                 val boardGames = boardGameGeek.boardGames
                 if (boardGames != null) {
                     totalView.text = boardGames.games?.size.toString()

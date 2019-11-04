@@ -11,7 +11,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
+import java.lang.Math.round
 
 class BoardGameAdapter(val context: Context, val boardGames: BoardGames) : RecyclerView.Adapter<BoardGameAdapter.ViewHolder>() {
 
@@ -48,6 +50,8 @@ class BoardGameAdapter(val context: Context, val boardGames: BoardGames) : Recyc
         fun setData(boardGame: BoardGame?, pos: Int) {
             boardGame?.let {
                 itemView.txvTitle.text = boardGame.name
+                itemView.txvRating.text = "%.1f".format(boardGame.rating)
+                Picasso.get().load(boardGame.image_url).into(itemView.imgThumbnail)
             }
             this.currentBoardGame = boardGame
             this.currentPosition = pos

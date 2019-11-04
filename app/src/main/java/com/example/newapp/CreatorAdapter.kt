@@ -44,6 +44,7 @@ class CreatorAdapter(val context: Context, val creators: Array<String?>) : Recyc
         fun setData(creator: String?, pos: Int) {
             creator?.let {
                 itemView.txvTitle.text = creator
+                itemView.txvRating.text = ""
             }
             this.currentCreator = creator
             this.currentPosition = pos

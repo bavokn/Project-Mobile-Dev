@@ -79,8 +79,6 @@ data class BoardGame(
 data class BoardGames(var games: List<BoardGame>?)
 
 class BoardGameGeek : BoardGameInterface {
-    // val boardGames =  mutableBoardGames(ListOf())
-    val boardGameList = mutableListOf<BoardGame>()
     var boardGames : BoardGames? = null
 
     companion object {
@@ -101,6 +99,8 @@ class BoardGameGeek : BoardGameInterface {
 
     @Override
     override fun onCallback(items: JSONArray) {
+        val boardGameList = mutableListOf<BoardGame>()
+
         for (i in 0 until items.length()){
             val item = items[i] as JSONObject
             Log.e("item:", item.toString())
@@ -128,8 +128,14 @@ class BoardGameGeek : BoardGameInterface {
         boardGames = BoardGames(boardGameList)
     }
 
-    fun fetchJsonResponse(query: String)  {
-        val url = String.format(BASE_URL + "search?name=" + query + "&client_id=" + client_id)
+    fun fetchJsonResponse(query: String, type: String)  {
+
+        var url = ""
+        when (type) {
+            "games" -> url = String.format(BASE_URL + "search?name=" + query + "&client_id=" + client_id)
+            "publisher" -> url = String.format(BASE_URL + "search?publisher=" + query + "&client_id=" + client_id)
+            "creator" -> url = String.format(BASE_URL + "search?designer=" + query + "&client_id=" + client_id)
+        }
 
         val stringRequest = StringRequest(Request.Method.GET, url,
             Response.Listener<String> { response ->

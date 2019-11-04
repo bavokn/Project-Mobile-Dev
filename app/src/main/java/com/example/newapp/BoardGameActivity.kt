@@ -54,7 +54,7 @@ class BoardGameActivity : AppCompatActivity() {
         val maxPlayersString = "Maximum players: " + boardGame.max_players.toString()
         maxPlayersView.text = maxPlayersString
 
-        val ratingString = "Rating: " + boardGame.rating.toString()
+        val ratingString = "Rating: " + "%.1f".format(boardGame.rating)
         ratingView.text = ratingString
 
         urlView.text = boardGame.url
