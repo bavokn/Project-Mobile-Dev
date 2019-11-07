@@ -1,6 +1,7 @@
 package com.example.PDM
 
 import BoardGameGeek
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -39,6 +40,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
          * Setup search button
          */
         findViewById<Button>(R.id.buttonSearch).setOnClickListener(this)
+
+        val infoButton = findViewById<Button>(R.id.infoButton)
+        infoButton.setOnClickListener {
+            val intent = Intent(this, InfoActivity::class.java)
+            this.startActivity(intent)
+        }
     }
 
     override fun onClick(v: View) {
@@ -56,6 +63,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 txtTotalBoardGames.text = games.size.toString()
             })
     }
+
+
 
 //    override fun onCreate(savedInstanceState: Bundle?) {
 //        super.onCreate(savedInstanceState)
