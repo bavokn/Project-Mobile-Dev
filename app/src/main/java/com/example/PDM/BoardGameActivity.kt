@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import android.text.method.ScrollingMovementMethod
 import androidx.lifecycle.ViewModelProviders
+import com.example.PDM.adapters.BoardGameAdapter
 import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
 
 class BoardGameActivity : AppCompatActivity() {
@@ -80,12 +81,12 @@ class BoardGameActivity : AppCompatActivity() {
         val adapter = CreatorAdapter(this, boardGame.creators)
         creatorsView.adapter = adapter
 
-        publisherView.text = boardGame.company
-        publisherView.setOnClickListener {
-            val intent = Intent(this, PublisherActivity::class.java)
-            intent.putExtra("Publisher", boardGame.company)
-            this.startActivity(intent)
-        }
+//        publisherView.text = boardGame.company
+//        publisherView.setOnClickListener {
+//            val intent = Intent(this, PublisherActivity::class.java)
+//            intent.putExtra("Publisher", boardGame.company)
+//            this.startActivity(intent)
+//        }
 
         descriptionView.text = boardGame.desc
         descriptionView.movementMethod = ScrollingMovementMethod()

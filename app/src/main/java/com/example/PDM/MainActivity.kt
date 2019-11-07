@@ -1,28 +1,22 @@
 package com.example.PDM
 
 import BoardGameGeek
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.util.Log
 import android.view.View
-import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.PDM.adapters.BoardGameAdapter
 import com.example.PDM.dtos.GameDTO
 import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 const val TAG : String = "PDM Project"
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
-    companion object{
-        private val boardGameGeek = BoardGameGeek()
-    }
 
     val adapter : BoardGameAdapter by lazy {
         BoardGameAdapter(model)
@@ -36,7 +30,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         /**
-         * Setup recyclerArtists with ArtistsAdapter
+         * Setup recyclerArtists with BoardGameAdapter
          */
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         recyclerView.adapter = adapter
@@ -55,14 +49,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         val name = txtSearchBoardGameName.text.toString()
         model.searchGames(name, 1)
 
-        model.games.observe(this, object: Observer<Array<GameDTO>> {
-            override fun onChanged(artists: Array<GameDTO>) {
+        model.games.observe(this,
+            Observer<Array<GameDTO>> { games ->
                 adapter.notifyDataSetChanged()
                 //TODO update UI
-//                txtTotalArtists.text = artists.size.toString()
-            }
-
-        })
+                txtTotalBoardGames.text = games.size.toString()
+            })
     }
 
 //    override fun onCreate(savedInstanceState: Bundle?) {

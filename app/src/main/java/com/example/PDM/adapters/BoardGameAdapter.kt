@@ -1,28 +1,26 @@
-package com.example.PDM
+package com.example.PDM.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.RecyclerView
+import com.example.PDM.R
 import com.example.PDM.dtos.GameDTO
 import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
 
 class BoardGameAdapter(private val model : BoardGamesViewModel) : RecyclerView.Adapter<BoardGamesViewHolder>()
 {
-
-//TODO create this class
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardGamesViewHolder {
         val view = LayoutInflater.from(parent.context)
                 //TODO set the correct view of the window
-            .inflate(R.layout.album_view, parent, false) as LinearLayout
+            .inflate(R.layout.activity_board_game, parent, false) as LinearLayout
         return BoardGamesViewHolder(view)
     }
 
-    override fun getItemCount(): Int = model.games.size
+    override fun getItemCount(): Int = model.games.value?.size ?: 0
 
     override fun onBindViewHolder(holder: BoardGamesViewHolder, position: Int) {
-        holder.bindTo(model.games[position])
+        model.games.value?.get(position)?.let { holder.bindTo(it) }
     }
 }
 
@@ -32,7 +30,7 @@ class BoardGamesViewHolder(private val view: LinearLayout) : RecyclerView.ViewHo
 //    private val txtAlbumName: TextView = view.findViewById<TextView>(R.id.txtAlbumName)
 //    private val txtPlaycount: TextView = view.findViewById<TextView>(R.id.txtPlaycount)
 
-    fun bindTo(album: GameDTO) {
+    fun bindTo(game: GameDTO) {
         //TODO set binding
     }
 }

@@ -14,19 +14,18 @@ class HttpRequests(ctx: Context) {
 
     val gson = Gson()
 
-    inline fun <reified T> get(url: String, crossinline onSuccess: (T) -> Unit, crossinline onError: (AppError) -> Unit) {
+    inline fun <reified T>get(url: String, crossinline onSuccess: (T) -> Unit, crossinline onError: (AppError) -> Unit) {
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
             Request.Method.GET,
             url,
             Response.Listener<String> { response ->
-                val dto = gson.fromJson(response, T::class.java)
+                val results = "{\n results : { matches :  $response\n}\n}"
+                val dto = gson.fromJson(results, T::class.java)
                 onSuccess(dto)
             },
             Response.ErrorListener { err -> onError(AppError(err))})
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
-
     }
-
 }
