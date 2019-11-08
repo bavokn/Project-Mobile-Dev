@@ -6,7 +6,6 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.google.gson.Gson
-import isel.leic.i1920.pdm.li51n.utils.AppError
 
 class HttpRequests(ctx: Context) {
     // Instantiate the RequestQueue.

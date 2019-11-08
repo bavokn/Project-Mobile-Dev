@@ -1,11 +1,11 @@
-package com.example.bgg_1.lastfm
+package com.example.bgg_1.boardgameatlas
 
 
 import android.content.Context
 import android.util.Log
-import com.example.bgg_1.dtos.SearchDto
+import com.example.bgg_1.boardgameatlas.dto.SearchDto
+import com.example.bgg_1.utils.AppError
 import com.example.bgg_1.utils.HttpRequests
-import isel.leic.i1920.pdm.li51n.utils.AppError
 
 
 //TODO adjust these values

@@ -9,9 +9,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bgg_1.BoardGameActivity
 import com.example.bgg_1.R
-import com.example.bgg_1.dtos.GameDTO
-import com.squareup.picasso.Picasso
+import com.example.bgg_1.boardgameatlas.dto.GameDTO
 import com.example.bgg_1.viewmodel.BoardGamesViewModel
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.boardgame_list_item.view.*
 
 class BoardGameAdapter(private val model: BoardGamesViewModel) :

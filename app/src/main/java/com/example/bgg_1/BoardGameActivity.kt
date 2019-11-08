@@ -2,18 +2,18 @@ package com.example.bgg_1
 
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.net.Uri
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.squareup.picasso.Picasso
-import android.text.method.ScrollingMovementMethod
 import com.example.bgg_1.adapters.CreatorAdapter
-import com.example.bgg_1.dtos.GameDTO
-import android.net.Uri
+import com.example.bgg_1.boardgameatlas.dto.GameDTO
+import com.squareup.picasso.Picasso
 
 
 class BoardGameActivity : AppCompatActivity() {

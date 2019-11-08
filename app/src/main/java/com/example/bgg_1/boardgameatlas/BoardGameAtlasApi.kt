@@ -1,7 +1,7 @@
-package com.example.bgg_1.lastfm
+package com.example.bgg_1.boardgameatlas
 
-import com.example.bgg_1.dtos.SearchDto
-import isel.leic.i1920.pdm.li51n.utils.AppError
+import com.example.bgg_1.boardgameatlas.dto.SearchDto
+import com.example.bgg_1.utils.AppError
 
 interface BoardGameAtlasApi {
     fun searchGames(

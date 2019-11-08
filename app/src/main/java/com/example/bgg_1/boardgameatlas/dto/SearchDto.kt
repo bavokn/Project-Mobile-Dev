@@ -1,4 +1,4 @@
-package com.example.bgg_1.dtos
+package com.example.bgg_1.boardgameatlas.dto
 
 import com.google.gson.annotations.SerializedName
 

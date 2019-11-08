@@ -4,10 +4,10 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.bgg_1.dtos.GameDTO
-import com.example.bgg_1.lastfm.BoardGameAtlasApi
-import com.example.bgg_1.lastfm.BoardGameAtlasApiImpl
-import isel.leic.i1920.pdm.li51n.utils.AppError
+import com.example.bgg_1.boardgameatlas.BoardGameAtlasApi
+import com.example.bgg_1.boardgameatlas.BoardGameAtlasApiImpl
+import com.example.bgg_1.boardgameatlas.dto.GameDTO
+import com.example.bgg_1.utils.AppError
 
 class BoardGamesViewModel(application: Application) : AndroidViewModel(application) {
     var games: LiveData<Array<GameDTO>> = MutableLiveData(emptyArray())
