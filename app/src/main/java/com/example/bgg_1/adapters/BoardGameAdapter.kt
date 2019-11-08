@@ -1,4 +1,4 @@
-package com.example.PDM.adapters
+package com.example.bgg_1.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -7,18 +7,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.PDM.BoardGameActivity
-import com.example.PDM.R
-import com.example.PDM.dtos.GameDTO
+import com.example.bgg_1.BoardGameActivity
+import com.example.bgg_1.R
+import com.example.bgg_1.dtos.GameDTO
 import com.squareup.picasso.Picasso
-import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
+import com.example.bgg_1.viewmodel.BoardGamesViewModel
 import kotlinx.android.synthetic.main.boardgame_list_item.view.*
 
-class BoardGameAdapter(private val model : BoardGamesViewModel) : RecyclerView.Adapter<BoardGamesViewHolder>()
-{
+class BoardGameAdapter(private val model: BoardGamesViewModel) :
+    RecyclerView.Adapter<BoardGamesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardGamesViewHolder {
         val view = LayoutInflater.from(parent.context)
-                //TODO set the correct view of the window
             .inflate(R.layout.boardgame_list_item, parent, false)
         return BoardGamesViewHolder(view, parent.context)
     }
@@ -30,8 +29,8 @@ class BoardGameAdapter(private val model : BoardGamesViewModel) : RecyclerView.A
     }
 }
 
-//TODO adjust this class
-class BoardGamesViewHolder(private val view: View, val context: Context) : RecyclerView.ViewHolder(view) {
+class BoardGamesViewHolder(private val view: View, val context: Context) :
+    RecyclerView.ViewHolder(view) {
     var currentBoardGame: GameDTO? = null
 
     init {
@@ -47,10 +46,7 @@ class BoardGamesViewHolder(private val view: View, val context: Context) : Recyc
         }
     }
 
-    //TODO set the correct view attributes
-
     fun bindTo(game: GameDTO) {
-        //TODO set binding
         game.let {
             itemView.txvTitle.text = game.name
             var rating = game.average_user_rating

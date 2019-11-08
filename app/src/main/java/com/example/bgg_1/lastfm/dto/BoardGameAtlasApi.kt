@@ -1,12 +1,9 @@
-package com.example.PDM.lastfm
+package com.example.bgg_1.lastfm
 
-import com.example.PDM.dtos.GameDTO
-import com.example.PDM.dtos.GetGamesDto
-import com.example.PDM.dtos.SearchDto
+import com.example.bgg_1.dtos.SearchDto
 import isel.leic.i1920.pdm.li51n.utils.AppError
-import org.json.JSONArray
 
-interface LastFmWebApi {
+interface BoardGameAtlasApi {
     fun searchGames(
         name: String,
         page: Int,

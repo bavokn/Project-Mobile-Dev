@@ -1,4 +1,4 @@
-package com.example.PDM
+package com.example.bgg_1
 
 import org.junit.Test
 

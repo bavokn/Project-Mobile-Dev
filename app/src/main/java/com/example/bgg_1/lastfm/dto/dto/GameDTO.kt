@@ -1,4 +1,4 @@
-package com.example.PDM.dtos
+package com.example.bgg_1.dtos
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -14,10 +14,10 @@ class GameDTO(
     val description: String?,
     val primary_publisher: String?,
     val designers: ArrayList<String?>,
-    val developers: ArrayList<String?>,
     val artists: ArrayList<String?>,
     val average_user_rating: Double?,
-    val url: String?) : Parcelable {
+    val url: String?
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -28,7 +28,6 @@ class GameDTO(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
-        parcel.createStringArrayList() as ArrayList<String?>,
         parcel.createStringArrayList() as ArrayList<String?>,
         parcel.createStringArrayList() as ArrayList<String?>,
         parcel.readValue(Double::class.java.classLoader) as? Double,
@@ -46,7 +45,6 @@ class GameDTO(
         parcel.writeString(description)
         parcel.writeString(primary_publisher)
         parcel.writeStringList(designers)
-        parcel.writeStringList(developers)
         parcel.writeStringList(artists)
         parcel.writeValue(average_user_rating)
         parcel.writeString(url)

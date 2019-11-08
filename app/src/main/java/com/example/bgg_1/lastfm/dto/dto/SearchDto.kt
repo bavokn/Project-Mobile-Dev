@@ -1,4 +1,5 @@
-package com.example.PDM.dtos
+package com.example.bgg_1.dtos
+
 import com.google.gson.annotations.SerializedName
 
 

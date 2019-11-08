@@ -1,4 +1,4 @@
-package com.example.PDM
+package com.example.bgg_1
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

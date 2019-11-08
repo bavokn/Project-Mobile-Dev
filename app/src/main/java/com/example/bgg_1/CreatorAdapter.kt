@@ -1,4 +1,4 @@
-package com.example.PDM.adapters
+package com.example.bgg_1.adapters
 
 import android.content.Context
 import android.content.Intent
@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.PDM.CreatorActivity
-import com.example.PDM.R
+import com.example.bgg_1.CreatorActivity
+import com.example.bgg_1.R
 import kotlinx.android.synthetic.main.boardgame_list_item.view.txvTitle
 import kotlinx.android.synthetic.main.creator_list_item.view.*
 
-class CreatorAdapter(val context: Context, val creators: ArrayList<ArrayList<String?>>) : RecyclerView.Adapter<CreatorAdapter.ViewHolder>() {
+class CreatorAdapter(val context: Context, val creators: ArrayList<ArrayList<String?>>) :
+    RecyclerView.Adapter<CreatorAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.creator_list_item, parent, false)
@@ -22,8 +23,6 @@ class CreatorAdapter(val context: Context, val creators: ArrayList<ArrayList<Str
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var creator: String? = null
         var type: String? = null
-        Log.d("artists_size", creators[0].size.toString())
-        Log.d("designers_size", creators[1].size.toString())
 
         when {
             position < creators[0].size
@@ -38,7 +37,6 @@ class CreatorAdapter(val context: Context, val creators: ArrayList<ArrayList<Str
             }
         }
 
-        Log.d("creator: ", "$creator $type")
         holder.setData(creator, position, type)
     }
 

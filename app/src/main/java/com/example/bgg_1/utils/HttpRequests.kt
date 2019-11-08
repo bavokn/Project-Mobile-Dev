@@ -1,4 +1,4 @@
-package com.example.PDM.utils
+package com.example.bgg_1.utils
 
 import android.content.Context
 import com.android.volley.Request
@@ -14,7 +14,11 @@ class HttpRequests(ctx: Context) {
 
     val gson = Gson()
 
-    inline fun <reified T>get(url: String, crossinline onSuccess: (T) -> Unit, crossinline onError: (AppError) -> Unit) {
+    inline fun <reified T> get(
+        url: String,
+        crossinline onSuccess: (T) -> Unit,
+        crossinline onError: (AppError) -> Unit
+    ) {
         // Request a string response from the provided URL.
         val stringRequest = StringRequest(
             Request.Method.GET,
@@ -24,7 +28,7 @@ class HttpRequests(ctx: Context) {
                 val dto = gson.fromJson(results, T::class.java)
                 onSuccess(dto)
             },
-            Response.ErrorListener { err -> onError(AppError(err))})
+            Response.ErrorListener { err -> onError(AppError(err)) })
         // Add the request to the RequestQueue.
         queue.add(stringRequest)
     }

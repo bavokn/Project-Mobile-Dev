@@ -1,4 +1,4 @@
-package com.example.PDM
+package com.example.bgg_1
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,25 +8,25 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.PDM.adapters.BoardGameAdapter
-import com.example.PDM.dtos.GameDTO
-import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
-import kotlinx.android.synthetic.main.activity_creator_games.*
+import com.example.bgg_1.adapters.BoardGameAdapter
+import com.example.bgg_1.dtos.GameDTO
+import com.example.bgg_1.viewmodel.BoardGamesViewModel
+import kotlinx.android.synthetic.main.activity_publisher_games.*
 
-class CreatorActivity : AppCompatActivity() {
+class PublisherActivity : AppCompatActivity() {
 
-    val adapter : BoardGameAdapter by lazy {
+    val adapter: BoardGameAdapter by lazy {
         BoardGameAdapter(model)
     }
-    val model : BoardGamesViewModel by lazy {
+    val model: BoardGamesViewModel by lazy {
         ViewModelProviders.of(this)[BoardGamesViewModel::class.java]
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_creator_games)
+        setContentView(R.layout.activity_publisher_games)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.rv_creator_games)
+        val recyclerView = findViewById<RecyclerView>(R.id.rv_publisher_games)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
 
@@ -37,17 +37,16 @@ class CreatorActivity : AppCompatActivity() {
 
         Log.v(TAG, "**** FETCHING from Board Game Atlas...")
 
-        val creator = intent.getStringExtra("creator_name")
-        val type = intent.getStringExtra("creator_type")
+        val publisher = intent.getStringExtra("publisher")
 
-        model.searchGames(creator!!, 1, type!!)
+        model.searchGames(publisher!!, 1, "publisher")
 
         model.games.observe(this,
             Observer<Array<GameDTO>> { games ->
                 adapter.notifyDataSetChanged()
             })
 
-        tv_creator_name.text = creator
+        tv_publisher_name.text = publisher
     }
 
     override fun onBackPressed() {
