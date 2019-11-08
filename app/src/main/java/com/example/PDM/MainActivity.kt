@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.util.Log
 import android.view.View
+import androidx.core.view.size
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,15 +47,19 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this, InfoActivity::class.java)
             this.startActivity(intent)
         }
+
+        findViewById<Button>(R.id.top10Button).setOnClickListener {
+            topTen()
+        }
     }
 
     override fun onClick(v: View) {
         /**
          * Fetch data
          */
-        Log.v(TAG, "**** FETCHING from Last.fm...")
+        Log.v(TAG, "**** FETCHING from Board Game Atlas...")
         val name = txtSearchBoardGameName.text.toString()
-        model.searchGames(name, 1)
+        model.searchGames(name, 1, "name")
 
         model.games.observe(this,
             Observer<Array<GameDTO>> { games ->
@@ -105,6 +110,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 //    }
 
     fun topTen(){
-        //TODO make new request here with the extra params sort_by = average_user_rating
+        model.searchGames("", 1, "popular")
+
+        model.games.observe(this,
+            Observer<Array<GameDTO>> { games ->
+                adapter.notifyDataSetChanged()
+                //TODO update UI
+                txtTotalBoardGames.text = games.size.toString()
+            })
     }
 }

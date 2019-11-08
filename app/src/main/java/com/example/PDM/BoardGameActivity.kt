@@ -1,6 +1,5 @@
 package com.example.PDM
 
-import BoardGame
 import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -14,7 +13,14 @@ import com.squareup.picasso.Picasso
 import android.text.method.ScrollingMovementMethod
 import androidx.lifecycle.ViewModelProviders
 import com.example.PDM.adapters.BoardGameAdapter
+import com.example.PDM.adapters.CreatorAdapter
+import com.example.PDM.dtos.GameDTO
 import isel.leic.i1920.pdm.li51n.viewmodel.BoardGamesViewModel
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.net.Uri
+
 
 class BoardGameActivity : AppCompatActivity() {
 
@@ -32,15 +38,15 @@ class BoardGameActivity : AppCompatActivity() {
         /**
          * Setup recyclerArtists with ArtistsAdapter
          */
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        //val recyclerView = findViewById<RecyclerView>(R.id.rv_bg_creators)
+        //recyclerView.adapter = adapter
+        //recyclerView.layoutManager = LinearLayoutManager(this)
 
         setUp()
     }
 
     private fun setUp() {
-        val boardGame = intent.getParcelableExtra<BoardGame>("Board Game")
+        val boardGame = intent.getParcelableExtra<GameDTO>("boardgame")
 
         val nameView : TextView = findViewById(R.id.tv_bg_name)
         val yearView : TextView = findViewById(R.id.tv_bg_year)
@@ -66,7 +72,7 @@ class BoardGameActivity : AppCompatActivity() {
         val maxPlayersString = "Maximum players: " + boardGame.max_players.toString()
         maxPlayersView.text = maxPlayersString
 
-        val ratingString = "Rating: " + boardGame.rating.toString()
+        val ratingString = "Rating: " + "%.1f".format(boardGame.average_user_rating)
         ratingView.text = ratingString
 
         urlView.text = boardGame.url
@@ -74,21 +80,32 @@ class BoardGameActivity : AppCompatActivity() {
 
         Picasso.get().load(boardGame.image_url).into(imgUrlView)
 
+        imgUrlView.setOnClickListener {
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse(boardGame.image_url)
+            )
+            startActivity(browserIntent)
+        }
+
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.VERTICAL
         creatorsView.layoutManager = layoutManager
 
-        val adapter = CreatorAdapter(this, boardGame.creators)
+        val creators: ArrayList<ArrayList<String?>> = arrayListOf(boardGame.artists)
+        creators.addAll(arrayListOf(boardGame.designers))
+
+        val adapter = CreatorAdapter(this, creators)
         creatorsView.adapter = adapter
 
-//        publisherView.text = boardGame.company
-//        publisherView.setOnClickListener {
-//            val intent = Intent(this, PublisherActivity::class.java)
-//            intent.putExtra("Publisher", boardGame.company)
-//            this.startActivity(intent)
-//        }
+        publisherView.text = boardGame.primary_publisher
+        publisherView.setOnClickListener {
+            val intent = Intent(this, PublisherActivity::class.java)
+            intent.putExtra("publisher", boardGame.primary_publisher)
+            this.startActivity(intent)
+        }
 
-        descriptionView.text = boardGame.desc
+        descriptionView.text = boardGame.description
         descriptionView.movementMethod = ScrollingMovementMethod()
     }
 }

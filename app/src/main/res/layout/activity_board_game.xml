@@ -1,89 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ll_bg_screen"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     android:scrollbars="vertical"
     android:verticalScrollbarPosition="defaultPosition">
 
     <TextView
         android:id="@+id/tv_bg_name"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/bg_name"
         android:textAllCaps="false"
-        android:textSize="30sp" />
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_bg_year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_bg_year"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         android:text="@string/bg_year"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/tv_bg_rating"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_bg_rating"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_name" />
 
     <TextView
         android:id="@+id/tv_bg_rating"
-        android:layout_width="match_parent"
+        android:layout_width="206dp"
         android:layout_height="wrap_content"
         android:text="@string/bg_rating"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_name" />
 
     <TextView
         android:id="@+id/tv_bg_min_players"
-        android:layout_width="139dp"
+        android:layout_width="179dp"
         android:layout_height="wrap_content"
-        android:text="@string/bg_min_players" />
+        android:text="@string/bg_min_players"
+        app:layout_constraintBottom_toTopOf="@+id/tv_bg_max_players"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_rating" />
 
     <TextView
         android:id="@+id/tv_bg_max_players"
-        android:layout_width="139dp"
-        android:layout_height="wrap_content"
-        android:text="@string/bg_max_players" />
+        android:layout_width="179dp"
+        android:layout_height="22dp"
+        android:text="@string/bg_max_players"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_min_players" />
 
     <TextView
         android:id="@+id/tv_bg_min_age"
         android:layout_width="139dp"
         android:layout_height="wrap_content"
-        android:text="@string/bg_min_age" />
+        android:text="@string/bg_min_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_year" />
 
     <TextView
         android:id="@+id/tv_bg_description"
-        android:layout_width="match_parent"
-        android:layout_height="115dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
         android:fadeScrollbars="false"
         android:scrollbars="vertical"
-        android:text="@string/bg_description" />
+        android:text="@string/bg_description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_max_players" />
 
     <Button
         android:id="@+id/btn_bg_publisher"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/bg_publisher" />
+        android:text="@string/bg_publisher"
+        app:layout_constraintBottom_toTopOf="@+id/rv_bg_creators"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_bg_description" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_bg_creators"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_width="412dp"
+        android:layout_height="150dp"
+        android:layout_marginBottom="10dp"
         android:fadeScrollbars="false"
-        android:scrollbars="vertical" />
-
-    <TextView
-        android:id="@+id/tv_bg_url"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="end"
-        android:text="@string/bg_url"
-        android:autoLink="web"/>
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/iv_bg_img_url"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_bg_publisher" />
 
     <ImageView
         android:id="@+id/iv_bg_img_url"
-        android:layout_width="match_parent"
-        android:layout_height="161dp"
-        android:contentDescription="@string/boardgame_image_description" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/boardgame_image_description"
+        app:layout_constraintBottom_toTopOf="@+id/tv_bg_url"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rv_bg_creators" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/tv_bg_url"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:gravity="end"
+        android:text="@string/bg_url"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

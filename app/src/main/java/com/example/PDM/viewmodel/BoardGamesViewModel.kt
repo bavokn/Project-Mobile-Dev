@@ -14,9 +14,10 @@ class BoardGamesViewModel(application: Application) : AndroidViewModel(applicati
 
     var error : LiveData<AppError> = MutableLiveData()
 
-    fun searchGames(name: String, page: Int) {
+    fun searchGames(name: String, page: Int, type: String) {
         lastfm.searchGames(name,
             page,
+            type,
             { (games as MutableLiveData).value = it.results.gameMatches.games },
             { (error as MutableLiveData).value  = it }
         )

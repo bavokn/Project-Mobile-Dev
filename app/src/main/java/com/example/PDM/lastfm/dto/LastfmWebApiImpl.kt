@@ -21,12 +21,24 @@ class LastfmWebApiImpl(ctx: Context) : LastFmWebApi {
     override fun searchGames(
         name: String,
         page: Int,
+        type: String,
         onSuccess: (SearchDto) -> Unit,
         onError: (AppError) -> Unit)
     {
-        val url = String.format(" https://www.boardgameatlas.com/api/search?name=%s&client_id=Pe4QHoDYpF",name)
+        var url_builder = HOST + "search?"
+        when (type) {
+            "name" -> url_builder += "name=$name"
+            "popular" -> url_builder += "order_by=average_user_rating"
+            "artist" -> url_builder += "artist=$name"
+            "designer" -> url_builder += "designer=$name"
+            "publisher" -> url_builder += "publisher=$name"
+        }
 
-        Log.i(TAG, "Making Request to Uri ${url}")
+        val url = "$url_builder&client_id=Pe4QHoDYpF&limit=30"
+
+        // val url = String.format(" https://www.boardgameatlas.com/api/search?name=%s&client_id=Pe4QHoDYpF", name)
+
+        Log.i(TAG, "Making Request to Uri $url")
 
 
         httpRequestes.get(url, onSuccess, onError)

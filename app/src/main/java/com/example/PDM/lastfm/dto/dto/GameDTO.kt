@@ -2,8 +2,6 @@ package com.example.PDM.dtos
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 class GameDTO(
     val id: String?,
@@ -13,10 +11,13 @@ class GameDTO(
     val min_players: Int?,
     val max_players: Int?,
     val min_age: Int?,
-    val desc: String?,
-    val company: String?,
-    val creators: Array<String?>,
-    val rating: Double?, val url: String?) : Parcelable {
+    val description: String?,
+    val primary_publisher: String?,
+    val designers: ArrayList<String?>,
+    val developers: ArrayList<String?>,
+    val artists: ArrayList<String?>,
+    val average_user_rating: Double?,
+    val url: String?) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
@@ -27,11 +28,12 @@ class GameDTO(
         parcel.readValue(Int::class.java.classLoader) as? Int,
         parcel.readString(),
         parcel.readString(),
-        parcel.createStringArray() as Array<String?>,
+        parcel.createStringArrayList() as ArrayList<String?>,
+        parcel.createStringArrayList() as ArrayList<String?>,
+        parcel.createStringArrayList() as ArrayList<String?>,
         parcel.readValue(Double::class.java.classLoader) as? Double,
         parcel.readString()
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)
@@ -41,10 +43,12 @@ class GameDTO(
         parcel.writeValue(min_players)
         parcel.writeValue(max_players)
         parcel.writeValue(min_age)
-        parcel.writeString(desc)
-        parcel.writeString(company)
-        parcel.writeStringArray(creators)
-        parcel.writeValue(rating)
+        parcel.writeString(description)
+        parcel.writeString(primary_publisher)
+        parcel.writeStringList(designers)
+        parcel.writeStringList(developers)
+        parcel.writeStringList(artists)
+        parcel.writeValue(average_user_rating)
         parcel.writeString(url)
     }
 

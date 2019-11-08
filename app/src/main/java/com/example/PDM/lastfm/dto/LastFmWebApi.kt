@@ -10,6 +10,7 @@ interface LastFmWebApi {
     fun searchGames(
         name: String,
         page: Int,
+        type: String,
         onSuccess: (SearchDto) -> Unit,
         onError: (AppError) -> Unit
     )
