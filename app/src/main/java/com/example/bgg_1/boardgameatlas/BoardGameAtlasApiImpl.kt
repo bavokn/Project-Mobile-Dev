@@ -32,7 +32,8 @@ class BoardGameAtlasApiImpl(ctx: Context) : BoardGameAtlasApi {
             "publisher" -> urlBuilder += "publisher=$name"
         }
 
-        val url = "$urlBuilder&client_id=$KEY&limit=30"
+        val pageSkip = page * 30
+        val url = "$urlBuilder&client_id=$KEY&limit=30&skip=$pageSkip"
 
         Log.i(TAG, "Making Request to Uri $url")
 

@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.boardgame_list_item.view.*
 
 class BoardGameAdapter(private val model: BoardGamesViewModel) :
     RecyclerView.Adapter<BoardGamesViewHolder>() {
+    private var currentPosition = 0
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardGamesViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.boardgame_list_item, parent, false)
@@ -24,7 +26,10 @@ class BoardGameAdapter(private val model: BoardGamesViewModel) :
 
     override fun getItemCount(): Int = model.games.value?.size ?: 0
 
+    fun getCurrentPosition(): Int = currentPosition
+
     override fun onBindViewHolder(holder: BoardGamesViewHolder, position: Int) {
+        currentPosition = position
         model.games.value?.get(position)?.let { holder.bindTo(it) }
     }
 }

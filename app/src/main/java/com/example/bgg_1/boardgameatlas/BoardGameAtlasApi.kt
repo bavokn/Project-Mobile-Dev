@@ -2,6 +2,7 @@ package com.example.bgg_1.boardgameatlas
 
 import com.example.bgg_1.boardgameatlas.dto.SearchDto
 import com.example.bgg_1.utils.AppError
+import org.json.JSONObject
 
 interface BoardGameAtlasApi {
     fun searchGames(

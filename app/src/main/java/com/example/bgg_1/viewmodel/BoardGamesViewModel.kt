@@ -8,6 +8,7 @@ import com.example.bgg_1.boardgameatlas.BoardGameAtlasApi
 import com.example.bgg_1.boardgameatlas.BoardGameAtlasApiImpl
 import com.example.bgg_1.boardgameatlas.dto.GameDTO
 import com.example.bgg_1.utils.AppError
+import org.json.JSONObject
 
 class BoardGamesViewModel(application: Application) : AndroidViewModel(application) {
     var games: LiveData<Array<GameDTO>> = MutableLiveData(emptyArray())

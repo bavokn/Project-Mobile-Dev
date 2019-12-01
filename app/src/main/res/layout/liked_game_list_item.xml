@@ -40,11 +40,15 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <ImageView
-            android:id="@+id/imgThumbnail"
-            android:layout_width="30dp"
+        <Button
+            android:id="@+id/txvButton"
+            android:layout_width="40dp"
             android:layout_height="match_parent"
-            android:layout_gravity="end" />
+            android:layout_gravity="end"
+            android:background="#C21313"
+            android:text="X"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

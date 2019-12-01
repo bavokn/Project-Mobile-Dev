@@ -14,11 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.example.bgg_1.InfoActivity"></activity>
-        <activity android:name="com.example.bgg_1.PublisherActivity" />
-        <activity android:name="com.example.bgg_1.CreatorActivity" />
-        <activity android:name="com.example.bgg_1.BoardGameActivity" />
-        <activity android:name="com.example.bgg_1.MainActivity">
+        <activity android:name=".LikedGamesActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".PublisherActivity" />
+        <activity android:name=".CreatorActivity" />
+        <activity android:name=".BoardGameActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
