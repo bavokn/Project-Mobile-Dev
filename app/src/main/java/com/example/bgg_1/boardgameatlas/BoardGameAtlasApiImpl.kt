@@ -6,9 +6,9 @@ import android.util.Log
 import com.example.bgg_1.boardgameatlas.dto.SearchDto
 import com.example.bgg_1.utils.AppError
 import com.example.bgg_1.utils.HttpRequests
+import java.net.URLEncoder
 
 
-//TODO adjust these values
 const val KEY = "Pe4QHoDYpF"
 const val HOST = "https://www.boardgameatlas.com/api/"
 
@@ -23,17 +23,18 @@ class BoardGameAtlasApiImpl(ctx: Context) : BoardGameAtlasApi {
         onSuccess: (SearchDto) -> Unit,
         onError: (AppError) -> Unit
     ) {
+        val pageSkip = page * 30
         var urlBuilder = HOST + "search?"
+        // val name_encoded = URLEncoder.encode(name, "utf-8")
         when (type) {
-            "name" -> urlBuilder += "name=$name"
+            "name" -> urlBuilder +="name=" + URLEncoder.encode(name, "utf-8") + "&skip=$pageSkip&fuzzy_match=true"
             "popular" -> urlBuilder += "order_by=average_user_rating"
-            "artist" -> urlBuilder += "artist=$name"
-            "designer" -> urlBuilder += "designer=$name"
-            "publisher" -> urlBuilder += "publisher=$name"
+            "artist" -> urlBuilder += "artist=" + URLEncoder.encode(name, "utf-8")
+            "designer" -> urlBuilder += "designer=" + URLEncoder.encode(name, "utf-8")
+            "publisher" -> urlBuilder += "publisher=" + URLEncoder.encode(name, "utf-8")
         }
 
-        val pageSkip = page * 30
-        val url = "$urlBuilder&client_id=$KEY&limit=30&skip=$pageSkip"
+        val url = "$urlBuilder&client_id=$KEY&limit=30"
 
         Log.i(TAG, "Making Request to Uri $url")
 

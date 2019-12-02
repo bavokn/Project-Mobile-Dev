@@ -54,10 +54,8 @@ class BoardGamesViewHolder(private val view: View, val context: Context) :
     fun bindTo(game: GameDTO) {
         game.let {
             itemView.txvTitle.text = game.name
-            var rating = game.average_user_rating
-            if (rating == null)
-                rating = 0.0
-            itemView.txvRating.text = "%.1f".format(rating)
+            val rating = game.average_user_rating
+            itemView.txvRating.text = String.format("%.1f", rating)
             Picasso.get().load(game.image_url).into(itemView.imgThumbnail)
         }
         this.currentBoardGame = game

@@ -99,7 +99,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun createLocalFile() {
-        val path = File(filesDir,"/likedGames/")
+        val path = File(this.getExternalFilesDir(null),"/likedGames/")
         var success = true
 
         if (!path.exists()) {
@@ -109,9 +109,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         if (success) {
             Log.d(TAG, "Directory exist, proceed to create the file.")
-            val text = ""
-
-            File(path, LIKED_GAMES_FILENAME).writeText(text)
+            if (File(path, LIKED_GAMES_FILENAME).readText() == "") {
+                File(path, LIKED_GAMES_FILENAME).writeText("")
+            }
         }
     }
 

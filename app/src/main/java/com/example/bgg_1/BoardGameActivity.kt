@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.Button
@@ -33,14 +34,14 @@ class BoardGameActivity : AppCompatActivity() {
         setContentView(R.layout.activity_board_game)
 
         val boardGame = intent.getParcelableExtra<GameDTO>("boardgame")!!
-        val json = getJSON(boardGame)
-        val liked = checkIfLiked(json, boardGame)
+        val json = getJSON()
+        checkIfLiked(json, boardGame)
 
-        setUp(boardGame, liked, json)
+        setUp(boardGame, json)
     }
 
-    private fun getJSON(boardGame: GameDTO): JSONObject {
-        val path = File(filesDir,"/likedGames/")
+    private fun getJSON(): JSONObject {
+        val path = File(this.getExternalFilesDir(null),"/likedGames/")
         val jsonText = File(path, LIKED_GAMES_FILENAME).readText()
         return if (jsonText == "") {
             JSONObject()
@@ -55,7 +56,7 @@ class BoardGameActivity : AppCompatActivity() {
         return liked
     }
 
-    private fun setUp(boardGame: GameDTO, liked: Boolean, json: JSONObject) {
+    private fun setUp(boardGame: GameDTO, json: JSONObject) {
 
         val nameView: TextView = findViewById(R.id.tv_bg_name)
         val yearView: TextView = findViewById(R.id.tv_bg_year)
@@ -154,7 +155,7 @@ class BoardGameActivity : AppCompatActivity() {
     }
 
     private fun writeToFile(json: JSONObject) {
-        val path = File(filesDir,"/likedGames/")
+        val path = File(this.getExternalFilesDir(null),"/likedGames/")
         var success = true
 
         if (!path.exists()) {
