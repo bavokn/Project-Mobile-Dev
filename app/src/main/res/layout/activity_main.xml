@@ -8,7 +8,7 @@
     tools:context=".MainActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/featureSetsRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/bg"
@@ -24,12 +24,12 @@
         android:layout_width="156dp"
         android:layout_height="71dp"
         android:layout_marginTop="68dp"
-        android:text="Game"
+        android:hint="Game"
+        android:importantForAutofill="no"
+        android:inputType="text"
         android:textSize="18sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:inputType="text"
-        android:importantForAutofill="no"
         tools:ignore="LabelFor" />
 
     <Button
@@ -80,8 +80,6 @@
         android:id="@+id/top10Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="8dp"
         android:text="Top 30"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,13 +87,12 @@
 
     <Button
         android:id="@+id/infoButton"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
         android:text="Info"
         app:layout_constraintEnd_toEndOf="@+id/toolbar"
+        app:layout_constraintStart_toEndOf="@+id/featureSetsBtn"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
@@ -119,14 +116,22 @@
         app:layout_constraintStart_toEndOf="@+id/previousButton" />
 
     <Button
-        android:id="@+id/likedGamesButton"
+        android:id="@+id/customListsButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="LIKED GAMES"
-        app:layout_constraintEnd_toStartOf="@+id/infoButton"
+        android:text="Game Lists"
         app:layout_constraintStart_toEndOf="@+id/top10Button"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/featureSetsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Feature Sets"
+        app:layout_constraintStart_toEndOf="@+id/customListsButton"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

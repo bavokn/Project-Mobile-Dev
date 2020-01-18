@@ -17,7 +17,7 @@
         android:textAllCaps="false"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/tv_bg_year"
-        app:layout_constraintEnd_toStartOf="@+id/likeButton"
+        app:layout_constraintEnd_toStartOf="@+id/spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -121,17 +121,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/likeButton"
-        android:layout_width="wrap_content"
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="150dp"
         android:layout_height="0dp"
-        android:background="#303F9F"
-        android:text="@string/like_btn_text"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF"
-        android:textSize="14sp"
-        android:textStyle="italic"
-        android:typeface="normal"
+        android:spinnerMode="dialog"
         app:layout_constraintBottom_toTopOf="@+id/tv_bg_year"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

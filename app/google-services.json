@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "859632370239",
+    "firebase_url": "https://boardgamegeeks-503a0.firebaseio.com",
+    "project_id": "boardgamegeeks-503a0",
+    "storage_bucket": "boardgamegeeks-503a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:859632370239:android:34051dc5288ab7b3f5ae8a",
+        "android_client_info": {
+          "package_name": "com.isel.bgg_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "859632370239-3tere3fdmr974evfal4dvbs4v6jbej1i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.isel.bgg_1",
+            "certificate_hash": "7f7f1d2ebb3fbcb52ee7807edbaa91863712a8d1"
+          }
+        },
+        {
+          "client_id": "859632370239-t51sjp8v264vrg1t30lj452o2ql18s5s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-oaKGZjrk7vmhSlzBsSD_aEYqb4TFSdA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "859632370239-t51sjp8v264vrg1t30lj452o2ql18s5s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

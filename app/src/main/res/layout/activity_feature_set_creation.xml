@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FeatureSetCreationActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/publishersRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/publishersTv"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/designersRv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/publishersRv"
+        app:layout_constraintTop_toBottomOf="@+id/designersTv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categoriesRv"
+        android:layout_width="0dp"
+        android:layout_height="330dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mechanicsRv"
+        app:layout_constraintTop_toBottomOf="@+id/categoriesTv" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mechanicsRv"
+        android:layout_width="0dp"
+        android:layout_height="330dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mechanicsTv"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/fsCreationTv"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:text="Feature Set Creation"
+        android:textColor="#F7F8F7"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/refreshBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/fsNameEdit"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:ems="10"
+        android:hint="Feature set name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fsCreationTv"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <Button
+        android:id="@+id/createFsBtn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Create"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fsNameEdit"
+        app:layout_constraintTop_toBottomOf="@+id/fsCreationTv" />
+
+    <TextView
+        android:id="@+id/mechanicsTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#267BA5"
+        android:gravity="center"
+        android:text="Mechanics"
+        android:textColor="#FDFBFB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fsNameEdit"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/publishersTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#267BA5"
+        android:gravity="center"
+        android:text="Publishers"
+        android:textColor="#FDFBFB"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mechanicsRv"
+        app:layout_constraintWidth_default="percent"
+        app:layout_constraintWidth_percent="0.5" />
+
+    <TextView
+        android:id="@+id/categoriesTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#267BA5"
+        android:gravity="center_horizontal"
+        android:text="Categories"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/mechanicsTv"
+        app:layout_constraintTop_toBottomOf="@+id/createFsBtn" />
+
+    <TextView
+        android:id="@+id/designersTv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#267BA5"
+        android:gravity="center_horizontal"
+        android:text="Designers"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/publishersTv"
+        app:layout_constraintTop_toBottomOf="@+id/categoriesRv" />
+
+    <Button
+        android:id="@+id/refreshBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:text="REFRESH"
+        app:layout_constraintBottom_toTopOf="@+id/createFsBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
