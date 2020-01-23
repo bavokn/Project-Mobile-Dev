@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.isel.bgg_1.adapters.BoardGameAdapter
-import com.isel.bgg_1.boardgameatlas.dto.FeatureSetsDto.ValueDTO
 import com.isel.bgg_1.boardgameatlas.dto.GameDTO
 import com.isel.bgg_1.viewmodel.BoardGamesViewModel
 import kotlinx.android.synthetic.main.activity_feature_set_games.*
@@ -43,7 +42,7 @@ class FeatureSetGamesActivity : AppCompatActivity() {
         featureSetNameTxv.text = featureSet
 
         deleteFSButton.setOnClickListener {
-            deleteFeatureSet(featureSet!!)
+            deleteFeatureSet(featureSet)
         }
 
         readJson()
@@ -129,7 +128,7 @@ class FeatureSetGamesActivity : AppCompatActivity() {
 
         val name = "categories=${URLEncoder.encode(categoriesName, "utf-8")}" +
                 "&mechanics=${URLEncoder.encode(mechanicsName, "utf-8")}" +
-                "&publisher${URLEncoder.encode(publisher, "utf-8")}" +
+                "&publisher=${URLEncoder.encode(publisher, "utf-8")}" +
                 "&designer=${URLEncoder.encode(designer, "utf-8")}"
 
         model.searchGames(name, 0, "feature_set")

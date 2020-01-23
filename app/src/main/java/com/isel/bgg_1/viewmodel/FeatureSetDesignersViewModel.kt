@@ -5,9 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isel.bgg_1.boardgameatlas.BGADesignerFeatureApiImpl
-import com.isel.bgg_1.boardgameatlas.BGAPublisherFeatureApiImpl
 import com.isel.bgg_1.boardgameatlas.dto.FeatureSetsDto.DesignerDTO
-import com.isel.bgg_1.boardgameatlas.dto.FeatureSetsDto.PublisherDTO
 import com.isel.bgg_1.utils.AppError
 
 class FeatureSetDesignersViewModel(application: Application) : AndroidViewModel(application) {

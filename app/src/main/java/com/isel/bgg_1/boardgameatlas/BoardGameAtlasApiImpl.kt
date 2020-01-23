@@ -36,7 +36,10 @@ class BoardGameAtlasApiImpl(ctx: Context) : BoardGameAtlasApi {
         }
 
         val url: String
-        url = "$urlBuilder&client_id=$KEY&limit=30"
+        url = if (type != "feature_set")
+            "$urlBuilder&client_id=$KEY&limit=30"
+        else
+            "$urlBuilder&client_id=$KEY"
 
         Log.i(TAG, "Making Request to Uri $url")
 

@@ -8,8 +8,6 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.isel.bgg_1.R
-import com.isel.bgg_1.adapters.CustomListsAdapter
 import com.isel.bgg_1.adapters.FeatureSetsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import org.json.JSONObject

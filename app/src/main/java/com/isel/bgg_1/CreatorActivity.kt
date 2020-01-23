@@ -1,6 +1,5 @@
 package com.isel.bgg_1
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
@@ -48,10 +47,5 @@ class CreatorActivity : AppCompatActivity() {
             })
 
         tv_creator_name.text = creator
-    }
-
-    override fun onBackPressed() {
-        val intent = Intent(this, MainActivity::class.java)
-        this.startActivity(intent)
     }
 }

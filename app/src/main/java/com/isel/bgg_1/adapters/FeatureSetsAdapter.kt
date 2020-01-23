@@ -1,20 +1,11 @@
 package com.isel.bgg_1.adapters
 
-import android.content.Context
-import android.content.Intent
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.isel.bgg_1.GameListActivity
 import com.isel.bgg_1.R
-import com.isel.bgg_1.TAG
 import com.isel.bgg_1.extensions.inflate
-import kotlinx.android.synthetic.main.custom_list_game_item.view.*
-import kotlinx.android.synthetic.main.custom_list_game_item.view.txvButton
 import kotlinx.android.synthetic.main.custom_list_item.view.*
-import java.io.File
 
 private lateinit var featureSets: ArrayList<String>
 
@@ -32,7 +23,7 @@ class FeatureSetsAdapter(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val inflatedView = parent.inflate(R.layout.custom_list_item, false)
+        val inflatedView = parent.inflate(R.layout.feature_set_item, false)
         featureSets = sets
         return ViewHolder(inflatedView)
     }

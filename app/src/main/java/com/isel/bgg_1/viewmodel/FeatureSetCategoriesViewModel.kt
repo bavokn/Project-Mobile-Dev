@@ -5,8 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.isel.bgg_1.boardgameatlas.BGACategoryFeatureApiImpl
-import com.isel.bgg_1.boardgameatlas.BGAMechanicFeatureApi
-import com.isel.bgg_1.boardgameatlas.BGAMechanicFeatureApiImpl
 import com.isel.bgg_1.boardgameatlas.dto.FeatureSetsDto.ValueDTO
 import com.isel.bgg_1.utils.AppError
 

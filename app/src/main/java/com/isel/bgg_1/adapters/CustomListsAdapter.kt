@@ -1,7 +1,6 @@
 package com.isel.bgg_1.adapters
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,10 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.isel.bgg_1.*
 import com.isel.bgg_1.GameListActivity
-import kotlinx.android.synthetic.main.custom_list_game_item.view.*
 import kotlinx.android.synthetic.main.custom_list_game_item.view.txvButton
 import kotlinx.android.synthetic.main.custom_list_item.view.*
-import org.json.JSONObject
 import java.io.File
 
 class CustomListsAdapter(

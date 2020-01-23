@@ -1,9 +1,6 @@
 package com.isel.bgg_1.adapters
 
-import android.content.Context
 import android.graphics.Color
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,7 +8,6 @@ import com.isel.bgg_1.R
 import com.isel.bgg_1.boardgameatlas.dto.FeatureSetsDto.ValueDTO
 import com.isel.bgg_1.extensions.inflate
 import com.isel.bgg_1.viewmodel.FeatureSetMechanicsViewModel
-import kotlinx.android.synthetic.main.boardgame_list_item.view.*
 import kotlinx.android.synthetic.main.fs_parameter_item.view.*
 
 private lateinit var mechanics: Array<ValueDTO>
